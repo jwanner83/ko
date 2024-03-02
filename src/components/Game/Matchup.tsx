@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import Button from '../Common/Forms/Button.tsx'
 
 interface Props {
   index: number
@@ -14,16 +15,11 @@ export default function Matchup ({ match, select, index }: Props) {
     select(name)
   }
 
-  return <div>
-    <p>game {index + 1}</p>
-    <div>
-      <button style={{
-        background: selected === match[0] ? 'blue' : ''
-      }} onClick={() => change(match[0])}>{match[0]}</button>
-      <span>vs.</span>
-      <button style={{
-        background: selected === match[1] ? 'blue' : ''
-      }} onClick={() => change(match[1])}>{match[1]}</button>
+  return <div className="px-5 py-4 text-sm bg-form-background-focus text-white rounded-xl w-full">
+    <h3 className="text-lg font-bold mb-3">Game {index + 1}</h3>
+    <div className="flex flex-col gap-2">
+      <Button className="font-bold" disabled={!!(selected && selected !== match[0])} onClick={() => change(match[0])}>{match[0]}</Button>
+      <Button className="font-bold" disabled={!!(selected && selected !== match[1])} onClick={() => change(match[1])}>{match[1]}</Button>
     </div>
   </div>
 }
